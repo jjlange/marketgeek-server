@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Include TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>API v1 Internal Test Program</title>
+</head>
+<body>
+    <div class="bg-sky-900">
+        <div class="p-4 flex flex-col">
+            <div class="mx-auto">
+                <div class="">
+                    <h1 class="text-white text-center px-4 font-bold bg-sky-100/10 rounded-full py-1">
+                        API v1 Internal Test Program
+                    </h1>
+                </div>               
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 mx-auto flex flex-col px-6 md:px-0 max-w-2xl">
+        <h2 class="text-3xl font-bold mb-4">Available Methods</h2>
+
+        <div class="bg-sky-900 text-white p-4 rounded-lg mb-4 mt-4">
+            <div class="">
+                <h3 class="text-2xl font-bold">Retrieve list of users</h3>
+                <div class="w-full mx-auto">
+                    <button class="bg-sky-200/10 hover:bg-sky-100/20 text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4">
+                        <a href="/api/v1/users">Get all users</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-sky-900 text-white p-4 rounded-lg mb-4 mt-4">
+            <div class="">
+                <h3 class="text-2xl font-bold">Get user by email</h3>
+                <div class="w-full mx-auto">
+                    <form action="/api/v1/user/get" method="GET">
+                        <!-- Email field -->
+                        <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
+                        <input type="submit" value="Get user" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20 text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-sky-900 text-white p-4 rounded-lg mb-4 mt-4">
+            <div class="">
+                <h3 class="text-2xl font-bold">Authenticate</h3>
+                <div class="w-full mx-auto">
+                    <form action="/api/v1/user/auth" method="GET">
+                        <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
+                        <input type="password" value="" placeholder="Password" name="password" class="md:ml-2 bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
+                        <input type="submit" value="Submit" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20  text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-sky-900 text-white p-4 rounded-lg mb-4 mt-4">
+            <div class="">
+                <h3 class="text-2xl font-bold">Create New User</h3>
+                <div class="w-full mx-auto">
+                    <form action="/api/v1/user/create" method="GET">
+                        <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500" required>
+                        <input type="password" value="" placeholder="Password" name="password" class="md:ml-2 bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500" required>
+                        <input type="name" value="" placeholder="Name" name="name" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
+                        <input type="submit" value="Create" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20  text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-sky-900 text-white p-4 rounded-lg mb-4 mt-4">
+            <div class="">
+                <h3 class="text-2xl font-bold">Delete A User</h3>
+                <div class="w-full mx-auto">
+                    <form action="/api/v1/user/delete" method="GET">
+                        <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
+                        <input type="submit" value="Remove" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20  text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 mb-4 font-light text-gray-500">
+            <p>Copyright (C) 2022, MarketGeek. All Rights Reserved.</p>
+            <p class="mt-2 font-medium text-red-500">
+                This is an internal test program for the API v1.
+                Please do not use this program for any other purpose and do not share it with anyone.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
