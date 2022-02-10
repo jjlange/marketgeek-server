@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Internal Test Program (HTML) -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
                 <h3 class="text-2xl font-bold">Retrieve list of users</h3>
                 <div class="w-full mx-auto">
                     <button class="bg-sky-200/10 hover:bg-sky-100/20 text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4">
-                        <a href="/api/v1/users">Get all users</a>
+                        <a href="/api/v1/users?api_key=123456789">Get all users</a>
                     </button>
                 </div>
             </div>
@@ -40,7 +41,7 @@
             <div class="">
                 <h3 class="text-2xl font-bold">Get user by email</h3>
                 <div class="w-full mx-auto">
-                    <form action="/api/v1/user/get" method="GET">
+                    <form action="/api/v1/user/get?api_key=123456789" method="GET">
                         <!-- Email field -->
                         <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
                         <input type="submit" value="Get user" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20 text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
@@ -53,7 +54,7 @@
             <div class="">
                 <h3 class="text-2xl font-bold">Authenticate</h3>
                 <div class="w-full mx-auto">
-                    <form action="/api/v1/user/auth" method="GET">
+                    <form action="/api/v1/user/auth?api_key=123456789" method="GET">
                         <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
                         <input type="password" value="" placeholder="Password" name="password" class="md:ml-2 bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
                         <input type="submit" value="Submit" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20  text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
@@ -66,7 +67,7 @@
             <div class="">
                 <h3 class="text-2xl font-bold">Create New User</h3>
                 <div class="w-full mx-auto">
-                    <form action="/api/v1/user/create" method="GET">
+                    <form action="/api/v1/user/create?api_key=123456789" method="GET">
                         <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500" required>
                         <input type="password" value="" placeholder="Password" name="password" class="md:ml-2 bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500" required>
                         <input type="name" value="" placeholder="Name" name="name" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
@@ -80,7 +81,7 @@
             <div class="">
                 <h3 class="text-2xl font-bold">Delete A User</h3>
                 <div class="w-full mx-auto">
-                    <form action="/api/v1/user/delete" method="GET">
+                    <form action="/api/v1/user/delete?api_key=123456789" method="GET">
                         <input type="email" value="" placeholder="Email" name="email" class="bg-sky-200/10 text-sky-200 font-semibold hover:bg-sky-200/20 placeholder-sky-100 font-medium py-2 px-4 rounded-lg mt-4  focus:outline-none  focus:border-sky-500 focus:ring-sky-500">
                         <input type="submit" value="Remove" class="ml-1 bg-sky-100/10 hover:bg-sky-100/20  text-sky-100 font-semibold py-2 px-4 rounded-lg mt-4 hover:cursor-pointer">
                     </form>

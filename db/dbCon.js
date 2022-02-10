@@ -18,6 +18,9 @@ const client = new MongoClient(connectionString, { useNewUrlParser: true })
 const bcrypt = require('bcrypt-nodejs')
 const salt = bcrypt.genSaltSync(10);
 
+// Get debug mode from environment
+const debug = process.env.APP_DEBUG || false
+
 // Initialise database variable
 let db
 
@@ -29,12 +32,12 @@ module.exports = {
     connectDB: function() {
         client.connect(function(err) {
             if (err) {
-                console.log('SERVER: Error connecting to database')
+                console.log('SERVER: Error connecting to database!')
                 return callback(err)
             }
 
             db = client.db('marketgeek')
-            console.log('SERVER: Database connected')
+            console.log('SERVER: Database connected!')
         })
     },
 
@@ -49,7 +52,7 @@ module.exports = {
         // Hash the password in bcrypted format
         bcrypt.hash(user.password, salt, null, function(err, hash) {
             if (err) {
-                console.log('SERVER: Error hashing password')
+                console.log('SERVER: Error hashing password!')
                 return callback(err)
             }
 
@@ -62,11 +65,11 @@ module.exports = {
 
             db.collection('users').insertOne(newUser, function(err) {
                 if (err) {
-                    console.log('SERVER: Error creating user')
+                    console.log('SERVER: Error while creating user!')
                     return callback(err)
                 }
                     
-                console.log('SERVER: User created')
+                console.log('SERVER: New user created')
                 return callback(null)
             })
         })
@@ -127,40 +130,48 @@ module.exports = {
             password: user.password
         }
 
-        // Hash the password in bcrypted format
-        bcrypt.hash(user.password, salt, null, function(err, hash) {
+
+        db.collection('users').findOne({email: query.email}, function(err, acc) {
             if (err) {
-                console.log('SERVER: Error hashing password!')
-                return callback("Error hashing password! " + err)
+                console.log('SERVER: Error checking user exists')
+                return callback(err)
             }
 
-            query = {
-                email: user.email,
-                password: hash
+            if (user) {
+                bcrypt.compare(query.password, acc.password, function(err, result) {
+                    if (err) {
+                        console.log('SERVER: Error comparing password!')
+                        return callback("Error comparing password! " + err)
+                    }
+
+                     if (result) {
+                        console.log('SERVER: Password is correct!')
+                        response = {
+                            message: "authenticated",
+                            error: false,
+                            user: acc
+                        }
+
+                        return callback(result)
+                     } else {
+                        console.log('SERVER: Password is incorrect!')
+                        response = {
+                            message: "incorrect password",
+                            error: true
+                        }
+
+                        return callback(response)
+                    }
+                })
+            } else {
+                console.log('SERVER: User does not exist')
+                response = {
+                    message: 'user does not exist',
+                    error: true
+                }
+
+                return callback(response)
             }
-
-            // Find the user in the database
-            db.collection('users').findOne(query, function(err, user) {
-                if (err) {
-                    console.log('SERVER: Error finding user');
-                    return;
-                }
-
-                if (!user || user.length === 0 || user === null) {
-                    response = {
-                        message: "password incorrect",
-                        error: true
-                    }
-                } else {
-                    response = {
-                        message: "authenticated",
-                        error: false,
-                        user: user
-                    }
-                }
-
-                callback(response)
-            })
         })
     },
 
@@ -202,32 +213,25 @@ module.exports = {
      * @returns {Object} The users object
      */
     getUser: function(user, callback) {
+        var query = {
+            email: user.email
+        }
 
-        db.collection('users').findOne({email: user.email}, function(err, result) {
+        db.collection('users').findOne(query, function(err, result) {
             if (err) {
                 console.log('SERVER: Error getting user')
-                return callback(err)
+                callback(err)
             }
 
-            console.log('SERVER: User retrieved')
-
             var response
-
-
             if(result) {
-                response = {
-                    message: "user found",
-                    error: false,
-                    user: result
-                }
-
-                return callback(response)
+                callback(result)
             } else {
                 response = {
-                    message: "user not found",
+                    message: 'user does not exist',
                     error: true
                 }
-                return callback(response)
+                callback(response)
             }
         })
     },

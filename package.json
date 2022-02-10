@@ -1,0 +1,24 @@
+{
+  "name": "marketgeek-server",
+  "version": "1.0.0",
+  "description": "This repository contains all project files to run the backend server for the web version.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjlange/marketgeek-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjlange/marketgeek-server/issues"
+  },
+  "homepage": "https://github.com/jjlange/marketgeek-server#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  }
+}
