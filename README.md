@@ -18,7 +18,7 @@ You can send GET requests to the following endpoints:
   This endpoint returns a JSON object of the users that are currently in the database. It doesn't require any arguments.
 
 - #### /api/v1/user/create
-  Use this endpoint to create a new user in the database. It requires three GET- parameters. Provide a String for email, password (will be hashed), and name (full name). 
+  Use this endpoint to create a new user in the database. It requires three POST- parameters. Provide a String for email, password (will be hashed), and name (full name). 
 
 - #### /api/v1/user/delete
   In order to delete an account from the database, use this endpoint with the email address (email) as its only argument. Please be cautious when using this API.
