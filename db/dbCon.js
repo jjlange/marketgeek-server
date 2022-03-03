@@ -137,7 +137,7 @@ module.exports = {
                 return callback(err)
             }
 
-            if (user) {
+            if (acc) {
                 bcrypt.compare(query.password, acc.password, function(err, result) {
                     if (err) {
                         console.log('SERVER: Error comparing password!')
@@ -147,7 +147,7 @@ module.exports = {
                      if (result) {
                         console.log('SERVER: Password is correct!')
                         response = {
-                            message: "authenticated",
+                            message: "AUTHENTICATED",
                             error: false,
                             user: acc
                         }
@@ -156,7 +156,7 @@ module.exports = {
                      } else {
                         console.log('SERVER: Password is incorrect!')
                         response = {
-                            message: "incorrect password",
+                            message: "INCORRECT_PASSWORD",
                             error: true
                         }
 
@@ -166,7 +166,7 @@ module.exports = {
             } else {
                 console.log('SERVER: User does not exist')
                 response = {
-                    message: 'user does not exist',
+                    message: 'USER_NOT_FOUND',
                     error: true
                 }
 

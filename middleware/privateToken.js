@@ -10,8 +10,7 @@
  */
 
 function verifyToken(req, res, next) {
-     // Check if API key is set
-
+    // Check if API key is set
     if (req.body.api_key  != undefined) {   
          if(req.body.api_key != process.env.API_ACCESS_KEY) {
              console.log('SERVER: API key is invalid!')

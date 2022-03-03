@@ -27,13 +27,25 @@
  const authToken = require('./middleware/auth').authToken
  const returnUserId = require('./middleware/auth').returnUserId
 
- app.use(function (req, res, next) {
-    //Enabling CORS
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-      next();
- });
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
  
  // Get debug mode from environment
  const debug_mode = process.env.APP_DEBUG || false
@@ -78,26 +90,26 @@
     }
  })
 
- app.get('/api/v1/user/create', (req, res) => {
+ app.post('/api/v1/user/create', (req, res) => {
     if(!auth(req, res)) { res.send("Unauthorized") } else {
         let user = {
-            name: req.query.name,
-            email: req.query.email,
-            password: req.query.password
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
         }
 
         // Check if email is already in use
         db.checkUserExists(user.email, function(err, result) {
             if (err) {
                 response = {
-                    message: "creation failed. error: " + err,
+                    message: "ERROR",
                     error: true
                 }
 
                 res.status(500).send(response)
             } else if (result) {
                 response = {
-                    message: 'creation failed. email already in use',
+                    message: 'EMAIL_IN_USE',
                     error: true
                 }
 
@@ -113,7 +125,7 @@
                         }
                     } else {
                         response = {
-                            message: 'creation successful',
+                            message: "SUCCESS",
                             error: false
                         }
                     }
@@ -132,13 +144,8 @@ app.post('/api/v1/user/auth', (req, res) => {
             password: req.body.password
         }
 
-        
         db.authUser(user, response => {
             if(response.error) {
-                response = {
-                    message: "password_incorrect",
-                    error: true
-                }
                 res.send(response)
             } else {
                 db.getUser({email: user.email}, result => {
@@ -170,6 +177,8 @@ app.post('/api/v1/user/auth', (req, res) => {
         })
     }
 })
+
+
 
 
 // Route to check if the user is authenticated
