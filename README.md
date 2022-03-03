@@ -12,7 +12,7 @@ Open the URL **/api/v1/test** in your browser and you will see a webpage that al
 ## Use the API
 You don't need an API key as of right now. This feature will be implemented in the next update, and you will receive the details for a development test server that can be accessed from anywhere shortly after. 
 
-You can send GET requests to the following endpoints:
+You can send POST requests to the following endpoints:
 
 - #### /api/v1/users
   This endpoint returns a JSON object of the users that are currently in the database. It doesn't require any arguments.
